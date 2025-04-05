@@ -1,7 +1,66 @@
+regexNome => /^
+  [A-ZÀ-ÖØ-ÿ]                    // deve começar com uma letra maiúscula (inclusive acentuadas)
+  [a-zà-öø-ÿ]+                   // deve conter ao menos uma letra minúscula após a inicial
+  (
+    [ ]                         // se houver sobrenome, deve começar com um espaço
+    [A-ZÀ-ÖØ-ÿ]                 // letra inicial maiúscula do sobrenome
+    [a-zà-öø-ÿ]+                // ao menos uma letra minúscula após a maiúscula
+  )*                            // pode repetir esse padrão (nome composto)
+$/
+
+regexTelefone => /^
+  (?:\([0-9]{2}\)|[0-9]{2})?     // DDD opcional, com ou sem parênteses
+  [0-9]{5}-[0-9]{4}              // número no formato XXXXX-XXXX
+$/
+
+regexEmail => /^
+  [a-zA-Z0-9._%+-]+              // nome do usuário (antes do @)
+  @                              // arroba separando usuário e domínio
+  [a-zA-Z0-9.-]+                 // domínio principal
+  \.                             // ponto antes da extensão
+  [a-zA-Z]{2,}                   // extensão do domínio com ao menos 2 letras
+$/
+
+regexDataNascimento => /^
+  (0[0-9]|[12][0-9]|3[01])       // dia entre 01 e 31
+  /
+  (0[0-9]|1[0-2])                // mês entre 01 e 12
+  /
+  \d{4}                          // ano com 4 dígitos
+$/
+
+regexCpfOrCnpj => /
+  (
+    [0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2}    // CNPJ com ou sem pontuação
+  )
+  |
+  (
+    [0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2}                 // CPF com ou sem pontuação
+  )
+/
+
+regexCEP => /
+  (
+    [0-9]{5}[-]?[0-9]{3}           // CEP no formato 00000-000 ou 00000000
+  )
+  |
+  (
+    [0-9]{8}                       // CEP com 8 dígitos colados
+  )
+/
+
+regexPlacaDeCarro => /^
+  [A-Z]{3}[0-9]{4}                // padrão antigo: ABC1234
+  |
+  [A-Z]{3}-[0-9]{4}               // padrão antigo com hífen: ABC-1234
+  |
+  [A-Z]{3}[0-9][A-Z][0-9]{2}      // padrão Mercosul: ABC1D23
+$/
+
 regexSenha => /^
-  (?=.*\d)              // deve conter ao menos um dígito
-  (?=.*[a-z])           // deve conter ao menos uma letra minúscula
-  (?=.*[A-Z])           // deve conter ao menos uma letra maiúscula
-  (?=.*[$*&@#])         // deve conter ao menos um caractere especial
-  [0-9a-zA-Z$*&@#]{8,}  // deve conter ao menos 8 dos caracteres mencionados
+  (?=.*\d)                        // deve conter ao menos um dígito
+  (?=.*[a-z])                     // deve conter ao menos uma letra minúscula
+  (?=.*[A-Z])                     // deve conter ao menos uma letra maiúscula
+  (?=.*[$*&@#])                   // deve conter ao menos um caractere especial
+  [0-9a-zA-Z$*&@#]{8,}            // deve conter ao menos 8 dos caracteres mencionados
 $/
